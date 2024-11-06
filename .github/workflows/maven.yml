@@ -11,7 +11,8 @@ jobs:
 
     env:
       MAVEN_HOME: /opt/maven
-      DOCKER_IMAGE: my-app
+     # DOCKER_IMAGE: my-app
+      NEXU_REPO_URL: "http://18.216.88.91:8081/repository/test/"
 
     steps:
     - name: Checkout Code
@@ -44,15 +45,14 @@ jobs:
           -Dsonar.host.url=http://3.145.203.136:9000 \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
-    - name: Build Docker Image
-      run: docker build -t 18.216.88.91:8082/repository/test/${{ env.DOCKER_IMAGE }}:latest .
-
-    - name: Log in to Nexus
-      run: echo ${{ secrets.NEXUS_PASSWORD }} | docker login -u ${{ secrets.NEXUS_USERNAME }} --password-stdin http://18.216.88.91:8082
-
-    # - name: Docker Login & Push to Nexus
-    #   # env:
-    #   #   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-    #   run: |
-    #     docker login 18.216.88.91:8082 -u admin --password admin ||
-    #     docker push 18.216.88.91:8082/repository/test/${{ env.DOCKER_IMAGE }}:latest || { echo "Docker push failed"; exit 1; }
+    - name: Docker Login
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+ 
+    - name: Docker Build
+      run: docker build -t nchandru360/gitactions/my-app:latest .
+ 
+    - name: Docker Tag
+      run: docker tag nchandru360/gitactions/my-app:latest ${{ env.NEXUS_REPO_URL }}/my-app:latest
+ 
+    - name: Docker Push to Nexus
+      run: docker push ${{ env.NEXUS_REPO_URL }}/my-app:latest
