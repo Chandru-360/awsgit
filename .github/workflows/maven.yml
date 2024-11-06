@@ -51,8 +51,8 @@ jobs:
     - name: Docker Build
       run: docker build -t 18.216.88.91:8081/repository/test/my-app:latest .
 
-    # - name: Docker Tag
-    #   run: docker tag nchandru360/gitactions/my-app:latest ${{ env.NEXUS_REPO_URL }}/my-app:latest
+    - name: Docker Tag
+      run: docker tag 18.216.88.91:8081/repository/test/my-app:latest
  
     - name: Docker Push to Nexus
       run: docker push 18.216.88.91:8082/repository/test/my-app:latest
