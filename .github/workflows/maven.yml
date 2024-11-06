@@ -13,6 +13,7 @@ jobs:
       MAVEN_HOME: /opt/maven
      # DOCKER_IMAGE: my-app
       NEXU_REPO_URL: "18.216.88.91:8081/repository/test"
+      DOCKER_TLS_VERIFY: "0"
 
     steps:
     - name: Checkout Code
