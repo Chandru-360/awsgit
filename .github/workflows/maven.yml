@@ -74,4 +74,4 @@ jobs:
       run: docker push 18.216.88.91:9002/repository/gitactions/my-app:latest
 
     - name: Docker Push to Jfrog
-      run: docker push chandru66.jfrog.io/artifactory/test/my-app:latest
+      run: docker push chandru66.jfrog.io/test/my-app:latest
