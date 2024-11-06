@@ -52,7 +52,7 @@ jobs:
       run: docker build -t nchandru360/gitactions/my-app:latest .
       
     - name: Docker Tag
-      run: docker tag nchandru360/gitactions/my-app:latest 18.216.88.91:8082/repository/test/my-app:latest
+      run: docker tag nchandru360/gitactions/my-app:latest 18.216.88.91:8081/repository/test/my-app:latest
  
     - name: Docker Push to Nexus
-      run: docker push 18.216.88.91:8082/repository/test/my-app:latest
+      run: docker push 18.216.88.91:8081/repository/test/my-app:latest
