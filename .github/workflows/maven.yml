@@ -12,7 +12,7 @@ jobs:
     env:
       MAVEN_HOME: /opt/maven
      # DOCKER_IMAGE: my-app
-      NEXU_REPO_URL: "http://18.216.88.91:8081/repository/test/"
+      NEXU_REPO_URL: "18.216.88.91:8081/repository/test/"
 
     steps:
     - name: Checkout Code
