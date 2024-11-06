@@ -63,12 +63,15 @@ jobs:
  
     - name: Docker Build
       run: docker build -t nchandru360/gitactions/my-app:latest .
+
+    - name: Docker Build for Jfrog
+      run: docker build -t chandru66.jfrog.io/test/my-app:latest .  
       
     - name: Docker Tag to nexus
       run: docker tag nchandru360/gitactions/my-app:latest 18.216.88.91:9002/repository/gitactions/my-app:latest
 
     - name: Docker Tag jforg
-      run: docker tag nchandru360/gitactions/my-app:latest chandru66.jfrog.io/test/my-app:latest
+      run: docker tag chandru66.jfrog.io/test/my-app:latest chandru66.jfrog.io/test/my-app:latest
  
     - name: Docker Push to Nexus
       run: docker push 18.216.88.91:9002/repository/gitactions/my-app:latest
