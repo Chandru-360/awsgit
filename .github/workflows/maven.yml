@@ -55,7 +55,7 @@ jobs:
         sudo systemctl restart docker
 
     - name: Docker Login
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      run: echo "${{ secrets.NEXUS_PASSWORD }}" | docker login 18.216.88.91:8081 -u "${{ secrets.NEXUS_USERNAME }}" --password-stdin
  
     - name: Docker Build
       run: docker build -t nchandru360/gitactions/my-app:latest .
